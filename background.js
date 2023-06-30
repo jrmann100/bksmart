@@ -7,13 +7,6 @@ function pluralS(count) {
 
 const delim = "";
 
-// suggestions are broken in manifest v3:
-// https://bugs.chromium.org/p/chromium/issues/detail?id=1186804
-// so here is a gift from the async gods:
-Function.prototype.callback = function (...args) {
-  return new Promise((res) => this(...args, res));
-};
-
 const find = (bookmark, title, type = bookmarkTypes.bookmark) => {
   const results = search(bookmark, title, type);
   if (results.length > 1)
@@ -53,7 +46,7 @@ const getPath = async (root, bookmark) =>
         ...(await getPath(
           root,
           (
-            await chrome.bookmarks.get.callback(bookmark.parentId)
+            await chrome.bookmarks.get(bookmark.parentId)
           )[0]
         )),
         bookmark,
@@ -80,7 +73,7 @@ if (!String.prototype.encodeHTML) {
 }
 
 async function handleInput(input, suggest) {
-  const root = (await chrome.bookmarks.getTree.callback())[0];
+  const root = (await chrome.bookmarks.getTree())[0];
   const bksmart = find(root, "bksmart", bookmarkTypes.folder);
   // const matches = search(bksmart, input, bookmarkTypes.bookmark); // todo: path parsing
   // const suggestions = await Promise.all(
@@ -150,7 +143,7 @@ async function handleInput(input, suggest) {
 chrome.omnibox.onInputChanged.addListener(handleInput);
 
 chrome.omnibox.onInputEntered.addListener(async (input, disposition) => {
-  const root = (await chrome.bookmarks.getTree.callback())[0];
+  const root = (await chrome.bookmarks.getTree())[0];
   const bksmart = find(root, "bksmart", bookmarkTypes.folder);
   let url;
   if (input === "" || input === "_") {
