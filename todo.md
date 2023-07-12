@@ -5,5 +5,3 @@
 , in node name allows for aliases
 
 folder structure can be viewed/managed interactively
-
-mv3 and es6 modules
