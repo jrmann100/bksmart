@@ -1,0 +1,44 @@
+<html>
+  <style>
+    body {
+      font-size: 1rem;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      border: 1px solid canvastext;
+      padding: 0.5rem;
+    }
+    body,
+    table,
+    li {
+      margin: 0.5rem;
+    }
+  </style>
+  <body>
+    <h4>For browsers without omnibox extension support:</h4>
+    <ol>
+      <li><button>Open site search settings</button></li>
+      <li>Click "Add"</li>
+      <li>
+        Fill out the form:
+        <table>
+          <tr>
+            <td>Search engine</td>
+            <td><code>bksmart</code></td>
+          </tr>
+          <tr>
+            <td>Shortcut</td>
+            <td><code>bk</code></td>
+          </tr>
+          <tr>
+            <td>URL</td>
+            <td><code id="location">loading&hellip;</code></td>
+          </tr>
+        </table>
+      </li>
+    </ol>
+    <script src="options.js"></script>
+  </body>
+</html>
