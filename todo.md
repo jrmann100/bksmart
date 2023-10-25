@@ -6,3 +6,5 @@
 folder structure can be viewed/managed interactively
 
 onboarding - tutorial and creating bksmart folder interactively
+
+there is a maximum suggestion count - organize by most used? show "...N more" with link to folder?
